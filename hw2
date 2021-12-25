@@ -1,0 +1,31 @@
+athlete = {}
+choice ='Y'
+while choice=='Y' or choice=='y':
+    name=tuple(input("first and last name: ").split())
+    country = input("Country: ")
+    time=tuple(list(map(int,input("Finishing time in hours,minutes,seconds: ").split(','))))
+    athlete[name]=[country,time]
+    choice=input("Do you want to continue Y/N ?")
+
+dict_time={}
+for item in athlete:
+    dict_time[item,athlete[item][0]]=athlete[item][1][0]*3600+athlete[item][1][1]*60+athlete[item][1][2]
+count=0
+medals=['gold','silver','bronze']
+
+countryDict={}
+print()
+
+for item in sorted(dict_time):
+    if count == 3:
+        break
+    else:
+        print(medals[count]+":"+item[0][0]+" "+item[0][1]+", "+item[1])
+    count=count+1
+    countryDict[item[1]]=[item[0],dict_time[item]]
+print()
+
+if 'Turkey' == countryDict:
+    if countryDict['Turkey'][1]<10800:
+        print("Turkish athlete running under 3 hours:",countryDict['Turkey'][0][0]+countryDict['Turkey'][0][1])
+        
